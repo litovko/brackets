@@ -60,4 +60,17 @@ public class Brackets {
 
     }
 
+    public boolean checkBrackets(String string)
+    {
+        return checkBrackets(string, 0);
+    }
+
+    private boolean checkBrackets(String string, int start)
+    {
+        if (string.isEmpty()) return start == 0;
+        else if (string.startsWith("(")) return checkBrackets(string.substring(1), start + 1);
+        else if (string.startsWith(")")) return (start > 0 && checkBrackets(string.substring(1), start - 1));
+        else return checkBrackets(string.substring(1), start);
+    }
+
 }
